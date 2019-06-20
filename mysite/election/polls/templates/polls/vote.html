@@ -1,0 +1,36 @@
+{% extends 'polls/base.html' %}
+{% load static %}
+
+
+{% block content %}
+	<header>
+		<img src="static/polls/images/banner.jpg">
+	</header>
+	<div class = 'head'>
+	<h1>STUDENT SUPREME COUNCIL ELECTION SYSTEM</h1>
+	<br>
+	
+		<ul>
+		{% for question in latest_question_list %}
+			<li><a><h2>{{ question.question_text }}</h2></a></li>
+		
+				{% for choice in question.choice_set.all %}
+					<input type="radio" name="choice" id='choice {{ forloop.counter }}' value="{{ choice.id }}">
+					<label for="choice{{ forloop.counter }}"><strong>{{ choice.choice_text }}</strong></label> <br>
+				{% endfor %}
+			
+		{% endfor %}
+		<br>
+		<input type="submit" value="Vote">
+
+		</ul>
+
+		
+	</div>
+	<br>
+
+
+
+
+
+{% endblock %}
